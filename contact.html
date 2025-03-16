@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">    
+        <title>Nandi Cab Booking</title>
+        <link rel="icon" href="/images/fav.png" type="image/png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <style>
+            :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --gray: #6b7280;
+            --error: #ef4444;
+            --success: #22c55e;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.15s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .validation-icon {
+            position: absolute;
+            right: 1rem;
+            top: 2.5rem;
+            display: none;
+        }
+
+        .validation-icon.success {
+            color: var(--success);
+            display: block;
+        }
+
+        .validation-icon.error {
+            color: var(--error);
+            display: block;
+        }
+
+        input.success, textarea.success {
+            border-color: var(--success);
+        }
+
+        input.error, textarea.error {
+            border-color: var(--error);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-top: 0.25rem;
+        }
+
+        .checkbox-group label {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+        }
+
+        .privacy-notice {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .success-message {
+            display: none;
+            background: #dcfce7;
+            color: #166534;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="announcement_bar__warpper">
+            <div class="marquee container">
+                <div class="marquee-content">
+                  <span>नंदी की सवारी, आई नंदी की सवारी&nbsp;</span>
+                  <span>नंदी की सवारी, आई नंदी की सवारी&nbsp;</span>
+                  <span>नंदी की सवारी, आई नंदी की सवारी&nbsp;</span>
+                  <span>नंदी की सवारी, आई नंदी की सवारी&nbsp;</span>
+                </div>
+                <div class="marquee-content"> 
+                  <span>नंदी की सवारी, आई नंदी की सवारी&nbsp;</span>
+                  <span>नंदी की सवारी, आई नंदी की सवारी&nbsp;</span>
+                  <span>नंदी की सवारी, आई नंदी की सवारी&nbsp;</span>
+                  <span>नंदी की सवारी, आई नंदी की सवारी&nbsp;</span>
+                </div>
+              </div>
+              
+        </div>
+        <header class="header">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid container"> 
+                  <h1 class="hidden_logo"><a class="navbar__brand" href="index.html"><img src="images/new_header_logo.png" class="my_logo"></a></h1>
+                  <!-- <a class="navbar-brand" href="#"><img src="images/logo.jpeg" class="my_logo"></a> -->
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="confirmation.html">Booking</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact us</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+        </header>
+        <div class="container">
+            <div class="success-message" id="successMessage">
+                Thank you! Your form has been submitted successfully.
+            </div>
+            
+            <h1 class="h1">Contact Form</h1>
+            <form id="gdprForm" novalidate>
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                    <span class="validation-icon">✓</span>
+                    <div class="error-message" id="nameError">Please enter your full name</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="validation-icon">✓</span>
+                    <div class="error-message" id="emailError">Please enter a valid email address</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    <span class="validation-icon">✓</span>
+                    <div class="error-message" id="messageError">Please enter your message</div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="dataConsent" name="dataConsent" required>
+                    <label for="dataConsent">
+                        I consent to having this website store my submitted information so they can respond to my inquiry. See our privacy policy to learn more about how we protect and manage your submitted data. *
+                    </label>
+                </div>
+                <div class="error-message" id="consentError">You must accept the privacy policy</div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="marketing" name="marketing">
+                    <label for="marketing">
+                        I would like to receive marketing communications about your products and services
+                    </label>
+                </div>
+
+                <button type="submit">Submit Form</button>
+
+                <div class="privacy-notice">
+                    <p>* Required fields</p>
+                    <p>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.</p>
+                </div>
+            </form>
+        </div>
+        <footer class="footer_wrapper">
+            <div class="container">
+              <div class="footer_content">
+                <div class="footer_logo">
+                  <a href="index.html"><img src="images/new_header_logo.png" alt="footer_logo"></a>
+                  <!-- <h1>Nandi Cab Booking</h1> -->
+                </div>
+                <div class="footer_informational_column">
+                  <h4>Contact Details</h4>
+                  <ul class="footer_sub_header">
+                    <li><a href="tel:+91 9876543210">+91 9876543210</a></li>
+                    <li><a href="mailto:testyouremail@gmail.com" class="email">testyouremail@gmail.com</a></li>
+                    <li><a href="#" class="location_address">123, mahakal nagri, Ujjain (M.P.)</a></li>
+                  </ul>
+                </div>
+                <div class="footer_menu">
+                  <h4>Useful Links</h4>
+                  <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="confirmation.html">Booking</a></li>
+                    <li><a href="contact.html">Contact us</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div clas="footer_bottom">
+              <div class="container">
+                <div class="footer_bottom_content">
+                  <div class="footer_copyright">
+                    <p>© 2025 Nandi Cab Booking. All Rights Reserved.</p>
+                  </div>
+                  <div class="payments_option text-end">
+                    <img src="images/UPI-apps.png" alt="payment_option">
+                  </div>
+                </div>
+              </div>
+            </div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            // Validation functions
+        const validators = {
+            name: (value) => value.trim().length >= 2,
+            email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+            message: (value) => value.trim().length >= 10
+        };
+
+        // Debounce function to limit validation frequency
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Function to update field status
+        function updateFieldStatus(field, isValid) {
+            const errorElement = document.getElementById(`${field.id}Error`);
+            const validationIcon = field.parentElement.querySelector('.validation-icon');
+            
+            field.classList.remove('success', 'error');
+            field.classList.add(isValid ? 'success' : 'error');
+            
+            if (validationIcon) {
+                validationIcon.textContent = isValid ? '✓' : '✗';
+                validationIcon.classList.remove('success', 'error');
+                validationIcon.classList.add(isValid ? 'success' : 'error');
+            }
+            
+            if (errorElement) {
+                errorElement.style.display = isValid ? 'none' : 'block';
+            }
+        }
+
+        // Progressive validation handler
+        const validateField = debounce((field) => {
+            if (field.type === 'checkbox') return;
+            
+            const validator = validators[field.id];
+            if (!validator) return;
+            
+            const isValid = validator(field.value);
+            updateFieldStatus(field, isValid);
+        }, 300);
+
+        // Add validation listeners to form fields
+        document.querySelectorAll('input[type="text"], input[type="email"], textarea').forEach(field => {
+            field.addEventListener('input', () => validateField(field));
+            field.addEventListener('blur', () => validateField(field));
+        });
+
+        // Form submission handler
+        document.getElementById('gdprForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let hasErrors = false;
+            
+            // Validate all fields
+            Object.entries(validators).forEach(([fieldName, validator]) => {
+                const field = document.getElementById(fieldName);
+                const isValid = validator(field.value);
+                updateFieldStatus(field, isValid);
+                if (!isValid) hasErrors = true;
+            });
+            
+            // Validate consent
+            const consent = document.getElementById('dataConsent');
+            if (!consent.checked) {
+                document.getElementById('consentError').style.display = 'block';
+                hasErrors = true;
+            } else {
+                document.getElementById('consentError').style.display = 'none';
+            }
+            
+            if (!hasErrors) {
+                // Collect form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    message: document.getElementById('message').value,
+                    dataConsent: consent.checked,
+                    marketing: document.getElementById('marketing').checked
+                };
+                
+                // Here you would typically send the data to your server
+                console.log('Form data:', formData);
+                
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Reset form and validation states
+                this.reset();
+                document.querySelectorAll('.validation-icon').forEach(icon => {
+                    icon.classList.remove('success', 'error');
+                    icon.style.display = 'none';
+                });
+                document.querySelectorAll('input, textarea').forEach(field => {
+                    field.classList.remove('success', 'error');
+                });
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            }
+        });
+        </script>
+    </body>
+</html>
